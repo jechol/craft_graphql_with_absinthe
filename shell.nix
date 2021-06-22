@@ -9,9 +9,6 @@ in nixpkgs.mkShell {
     nixpkgs.darwin.apple_sdk.frameworks.Foundation
 
     nixpkgs.erlangR20
-    nixpkgs.rebar
-    nixpkgs.rebar3
     nixpkgs.elixir_1_5
-    nixpkgs.beamPackages.hex
   ];
 }

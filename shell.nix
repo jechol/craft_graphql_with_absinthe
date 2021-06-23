@@ -5,11 +5,12 @@ let
   }) { };
   platform = if nixpkgs.stdenv.isDarwin then [
     nixpkgs.darwin.apple_sdk.frameworks.CoreServices
+    nixpkgs.darwin.apple_sdk.frameworks.CoreFoundation
     nixpkgs.darwin.apple_sdk.frameworks.Foundation
   ] else if nixpkgs.stdenv.isLinux then
     [ nixpkgs.inotify-tools ]
   else
     [ ];
 in nixpkgs.mkShell {
-  buildInputs = [ nixpkgs.erlang nixpkgs.elixir ] ++ platform;
+  buildInputs = [ nixpkgs.erlangR20 nixpkgs.elixir_1_5 ] ++ platform;
 }

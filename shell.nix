@@ -12,5 +12,6 @@ let
   else
     [ ];
 in nixpkgs.mkShell {
-  buildInputs = [ nixpkgs.erlangR20 nixpkgs.elixir_1_5 ] ++ platform;
+  buildInputs = [ nixpkgs.erlangR20 nixpkgs.elixir_1_5 nixpkgs.nodejs ]
+    ++ platform;
 }

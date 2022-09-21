@@ -1,11 +1,11 @@
-#---
+# ---
 # Excerpted from "Craft GraphQL APIs in Elixir with Absinthe",
 # published by The Pragmatic Bookshelf.
 # Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
 # We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/wwgraphql for more book information.
-#---
+# ---
 defmodule PlateSlateWeb.Schema.Query.MenuItemsTest do
   use PlateSlateWeb.ConnCase, async: true
 
@@ -82,9 +82,9 @@ defmodule PlateSlateWeb.Schema.Query.MenuItemsTest do
     }
   }
   """
-  @variables %{"term" => "reu"} 
+  @variables %{"term" => "reu"}
   test "menuItems field returns menuItems filtered by name when using a variable" do
-    response = get(build_conn(), "/api", query: @query, variables: @variables) 
+    response = get(build_conn(), "/api", query: @query, variables: @variables)
     assert json_response(response, 200) == %{
       "data" => %{
         "menuItems" => [
@@ -101,10 +101,10 @@ defmodule PlateSlateWeb.Schema.Query.MenuItemsTest do
     }
   }
   """
-  @variables %{"term" => 1} 
+  @variables %{"term" => 1}
   test "menuItems field returns an error when using a bad variable value" do
     response = get(build_conn(), "/api", query: @query, variables: @variables)
-    assert %{"errors" => _} = json_response(response, 400) 
+    assert %{"errors" => _} = json_response(response, 400)
   end
 
 
@@ -149,7 +149,7 @@ defmodule PlateSlateWeb.Schema.Query.MenuItemsTest do
   end
 
   @query """
-  query ($order: SortOrder!) { 
+  query ($order: SortOrder!) {
     menuItems(order: $order) {
       name
     }

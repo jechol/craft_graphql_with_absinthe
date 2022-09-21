@@ -47,7 +47,6 @@ defmodule PlateSlate.Mixfile do
       {:phoenix_ecto, ">= 0.0.0"},
       {:decimal, ">= 0.0.0"},
       {:ecto_sql, ">= 0.0.0"},
-      {:ecto_sql, ">= 0.0.0"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, ">= 0.0.0"},
       {:phoenix_live_reload, ">= 0.0.0", only: :dev},

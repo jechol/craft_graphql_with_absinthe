@@ -55,6 +55,7 @@ defmodule PlateSlate.Mixfile do
       {:phoenix_live_reload, ">= 0.0.0", only: :dev},
       {:gettext, ">= 0.0.0"},
       {:cowboy, ">= 0.0.0"},
+      {:plug_cowboy, ">= 0.0.0"},
       {:absinthe, ">= 0.0.0"},
       {:absinthe_plug, ">= 0.0.0"},
       {:absinthe_phoenix, ">= 0.0.0"},

@@ -13,7 +13,7 @@ defmodule PlateSlate.Menu.ItemTag do
 
 
   schema "item_tags" do
-    field :description
+    field :description, :string
     field :name, :string
 
     many_to_many :items, PlateSlate.Menu.Item, join_through: "items_taggings"

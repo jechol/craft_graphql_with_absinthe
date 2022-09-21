@@ -20,6 +20,7 @@ defmodule PlateSlate.Application do
       PlateSlate.Repo,
       # Start the endpoint when the application starts
       PlateSlateWeb.Endpoint,
+      {Phoenix.PubSub, [name: PlateSlate.PubSub, adapter: Phoenix.PubSub.PG2]}
       # Start your own worker by calling: PlateSlate.Worker.start_link(arg1, arg2, arg3)
       # worker(PlateSlate.Worker, [arg1, arg2, arg3]),
     ]

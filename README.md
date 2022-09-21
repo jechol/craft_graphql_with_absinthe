@@ -1,6 +1,6 @@
 ## Craft GraphQL APIs in Elixir with Absinthe
 
-Example code updated for latest language and frameworks at 2022.9
+Example code updated with the latest languages and frameworks in Sep. 2022.
 
 |          | Book  | This repo |
 | -------- | ----- | --------- |

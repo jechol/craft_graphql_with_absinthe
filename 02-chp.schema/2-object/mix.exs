@@ -48,6 +48,7 @@ defmodule PlateSlate.Mixfile do
       {:decimal, ">= 0.0.0"},
       {:ecto_sql, ">= 0.0.0"},
       {:postgrex, ">= 0.0.0"},
+      {:jason, ">= 0.0.0"},
       {:phoenix_html, ">= 0.0.0"},
       {:phoenix_live_reload, ">= 0.0.0", only: :dev},
       {:gettext, ">= 0.0.0"},
@@ -57,7 +58,6 @@ defmodule PlateSlate.Mixfile do
       {:absinthe_plug, ">= 0.0.0"},
       {:absinthe_phoenix, ">= 0.0.0"},
       {:absinthe_relay, ">= 0.0.0"},
-      {:jason, ">= 0.0.0"}
     ]
   end
 

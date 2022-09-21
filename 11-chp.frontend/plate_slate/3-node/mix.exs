@@ -42,25 +42,25 @@ defmodule PlateSlate.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:dataloader, "~> 1.0.0"},
+      {:dataloader, ">= 0.0.0"},
       # Other deps
-      {:comeonin_ecto_password, "~> 2.1"},
-      {:pbkdf2_elixir, "~> 0.12.0"},
-      {:phoenix, "~> 1.3.0"},
-      {:phoenix_pubsub, "~> 1.0"},
-      {:phoenix_ecto, "~> 3.2"},
-      {:decimal, "~> 1.0"},
+      {:comeonin_ecto_password, ">= 0.0.0"},
+      {:pbkdf2_elixir, ">= 0.0.0"},
+      {:phoenix, ">= 0.0.0"},
+      {:phoenix_pubsub, ">= 0.0.0"},
+      {:phoenix_ecto, ">= 0.0.0"},
+      {:decimal, ">= 0.0.0"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 2.10"},
-      {:phoenix_live_reload, "~> 1.0", only: :dev},
-      {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"},
-      {:absinthe, "~> 1.4.2"},
-      {:absinthe_plug, "~> 1.4.0"},
-      {:absinthe_phoenix, "~> 1.4.0"},
+      {:phoenix_html, ">= 0.0.0"},
+      {:phoenix_live_reload, ">= 0.0.0", only: :dev},
+      {:gettext, ">= 0.0.0"},
+      {:cowboy, ">= 0.0.0"},
+      {:absinthe, ">= 0.0.0"},
+      {:absinthe_plug, ">= 0.0.0"},
+      {:absinthe_phoenix, ">= 0.0.0"},
       # Other deps
-      {:absinthe_relay, "~> 1.4.0"},
-      {:cors_plug, "~> 1.5"}
+      {:absinthe_relay, ">= 0.0.0"},
+      {:cors_plug, ">= 0.0.0"}
     ]
   end
 

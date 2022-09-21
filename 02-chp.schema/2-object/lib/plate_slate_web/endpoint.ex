@@ -1,11 +1,11 @@
-#---
+# ---
 # Excerpted from "Craft GraphQL APIs in Elixir with Absinthe",
 # published by The Pragmatic Bookshelf.
 # Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
 # We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/wwgraphql for more book information.
-#---
+# ---
 defmodule PlateSlateWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :plate_slate
 
@@ -16,7 +16,9 @@ defmodule PlateSlateWeb.Endpoint do
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :plate_slate, gzip: false,
+    at: "/",
+    from: :plate_slate,
+    gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
@@ -33,7 +35,7 @@ defmodule PlateSlateWeb.Endpoint do
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    json_decoder: Poison
+    json_decoder: Jason
 
   plug Plug.MethodOverride
   plug Plug.Head

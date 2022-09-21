@@ -26,9 +26,9 @@ defmodule PlateSlateWeb.Resolvers.Menu do
     case Menu.create_item(params) do
       {:error, _} ->
         {:error, "Could not create menu item"}
+
       {:ok, _} = success ->
         success
     end
   end
-
 end

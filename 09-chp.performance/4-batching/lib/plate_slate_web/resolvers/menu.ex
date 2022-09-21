@@ -29,7 +29,8 @@ defmodule PlateSlateWeb.Resolvers.Menu do
     batch({PlateSlate.Menu, :categories_by_id}, menu_item.category_id, fn
       categories ->
         {:ok, Map.get(categories, menu_item.category_id)}
-    end) |> IO.inspect
+    end)
+    |> IO.inspect()
   end
 
   def create_item(_, %{input: params}, _) do
@@ -37,5 +38,4 @@ defmodule PlateSlateWeb.Resolvers.Menu do
       {:ok, %{menu_item: item}}
     end
   end
-
 end

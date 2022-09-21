@@ -28,9 +28,9 @@ defmodule PlateSlateWeb.Resolvers.Menu do
         with {:ok, item} <- Menu.create_item(params) do
           {:ok, %{menu_item: item}}
         end
+
       _ ->
         {:error, "unauthorized"}
     end
   end
-
 end

@@ -18,6 +18,7 @@ defmodule PlateSlateWeb.SubscriptionCase do
     quote do
       # Import conveniences for testing with channels
       use PlateSlateWeb.ChannelCase
+
       use Absinthe.Phoenix.SubscriptionTest,
         schema: PlateSlateWeb.Schema
 

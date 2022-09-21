@@ -12,10 +12,7 @@ defmodule PlateSlateWeb.Schema.Middleware.ChangesetErrors do
   def call(res, _) do
     # to be completed
     with %{errors: [%Ecto.Changeset{} = changeset]} <- res do
-      %{res |
-        value: %{errors: transform_errors(changeset)},
-        errors: [],
-      }
+      %{res | value: %{errors: transform_errors(changeset)}, errors: []}
     end
   end
 

@@ -22,5 +22,4 @@ defmodule PlateSlateWeb.Resolvers.Menu do
       {:ok, %{menu_item: item}}
     end
   end
-
 end

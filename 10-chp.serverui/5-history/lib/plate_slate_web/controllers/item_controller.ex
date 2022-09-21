@@ -8,11 +8,12 @@
 # ---
 defmodule PlateSlateWeb.ItemController do
   use PlateSlateWeb, :controller
+
   use Absinthe.Phoenix.Controller,
     schema: PlateSlateWeb.Schema,
     action: [mode: :internal]
-  # Rest of controller
 
+  # Rest of controller
 
   @graphql """
   query {
@@ -44,6 +45,7 @@ defmodule PlateSlateWeb.ItemController do
     |> put_flash(:info, "Menu item not found")
     |> redirect(to: "/admin/items")
   end
+
   def show(conn, %{data: %{menu_item: item}}) do
     since = variables(conn)["since"] || "2018-01-01"
     render(conn, "show.html", item: item, since: since)

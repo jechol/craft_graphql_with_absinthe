@@ -8,6 +8,7 @@
 # ---
 defmodule PlateSlateWeb.SessionController do
   use PlateSlateWeb, :controller
+
   use Absinthe.Phoenix.Controller,
     schema: PlateSlateWeb.Schema
 
@@ -27,6 +28,7 @@ defmodule PlateSlateWeb.SessionController do
         |> put_session(:employee_id, employee.id)
         |> put_flash(:info, "Login successful")
         |> redirect(to: "/admin/items")
+
       _ ->
         conn
         |> put_flash(:info, "Wrong email or password")

@@ -11,7 +11,6 @@ defmodule PlateSlate.Menu.Category do
   import Ecto.Changeset
   alias PlateSlate.Menu.Category
 
-
   schema "categories" do
     field :description, :string
     field :name, :string

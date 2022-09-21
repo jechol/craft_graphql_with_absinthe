@@ -11,7 +11,7 @@ defmodule PlateSlateWeb.Schema.Middleware.Authorize do
 
   def call(resolution, role) do
     with %{current_user: current_user} <- resolution.context,
-    true <- correct_role?(current_user, role) do
+         true <- correct_role?(current_user, role) do
       resolution
     else
       _ ->

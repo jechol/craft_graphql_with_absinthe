@@ -29,7 +29,8 @@ defmodule PlateSlateWeb.Resolvers.Menu do
     async(fn ->
       query = Ecto.assoc(menu_item, :category)
       {:ok, PlateSlate.Repo.one(query)}
-    end) |> IO.inspect
+    end)
+    |> IO.inspect()
   end
 
   def create_item(_, %{input: params}, _) do
@@ -37,5 +38,4 @@ defmodule PlateSlateWeb.Resolvers.Menu do
       {:ok, %{menu_item: item}}
     end
   end
-
 end

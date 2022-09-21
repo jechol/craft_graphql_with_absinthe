@@ -22,6 +22,7 @@ defmodule PlateSlateWeb.Schema.AccountsTypes do
   interface :user do
     field :email, :string
     field :name, :string
+
     resolve_type fn
       %{role: "employee"}, _ -> :employee
       %{role: "customer"}, _ -> :customer

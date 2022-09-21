@@ -12,14 +12,13 @@ defmodule PlateSlate.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   def start(_type, _args) do
-
-
     children = [
       PlateSlate.Repo,
       PlateSlateWeb.Endpoint,
       {Phoenix.PubSub, [name: PlateSlate.PubSub, adapter: Phoenix.PubSub.PG2]},
-      {Absinthe.Subscription, [PlateSlateWeb.Endpoint]},
+      {Absinthe.Subscription, [PlateSlateWeb.Endpoint]}
     ]
+
     opts = [strategy: :one_for_one, name: PlateSlate.Supervisor]
     Supervisor.start_link(children, opts)
   end

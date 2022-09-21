@@ -21,5 +21,4 @@ defmodule PlateSlateWeb.Resolvers.Menu do
     query = Ecto.assoc(category, :items)
     {:ok, PlateSlate.Repo.all(query)}
   end
-
 end

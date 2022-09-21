@@ -12,13 +12,11 @@ defmodule PlateSlateWeb.Schema do
   alias PlateSlateWeb.Resolvers
 
   query do
-
     field :menu_items, list_of(:menu_item) do
       arg :matching, :string
       arg :order, type: :sort_order, default_value: :asc
       resolve &Resolvers.Menu.menu_items/3
     end
-
   end
 
   enum :sort_order do
@@ -31,5 +29,4 @@ defmodule PlateSlateWeb.Schema do
     field :name, :string
     field :description, :string
   end
-
 end

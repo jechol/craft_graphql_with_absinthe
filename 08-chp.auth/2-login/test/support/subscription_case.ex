@@ -18,16 +18,15 @@ defmodule PlateSlateWeb.SubscriptionCase do
     quote do
       # Import conveniences for testing with channels
       use PlateSlateWeb.ChannelCase
+
       use Absinthe.Phoenix.SubscriptionTest,
         schema: PlateSlateWeb.Schema
 
       setup do
         PlateSlate.Seeds.run()
 
-        {:ok, socket} =
-            Phoenix.ChannelTest.connect(PlateSlateWeb.UserSocket, %{})
-        {:ok, socket} =
-            Absinthe.Phoenix.SubscriptionTest.join_absinthe(socket)
+        {:ok, socket} = Phoenix.ChannelTest.connect(PlateSlateWeb.UserSocket, %{})
+        {:ok, socket} = Absinthe.Phoenix.SubscriptionTest.join_absinthe(socket)
 
         {:ok, socket: socket}
       end

@@ -12,13 +12,11 @@ defmodule PlateSlateWeb.Schema do
   alias PlateSlateWeb.Resolvers
 
   query do
-
     field :menu_items, list_of(:menu_item) do
       arg :filter, :menu_item_filter
       arg :order, type: :sort_order, default_value: :asc
       resolve &Resolvers.Menu.menu_items/3
     end
-
   end
 
   enum :sort_order do
@@ -28,7 +26,6 @@ defmodule PlateSlateWeb.Schema do
 
   @desc "Filtering options for the menu item list"
   input_object :menu_item_filter do
-
     @desc "Matching a name"
     field :name, :string
 
@@ -43,7 +40,6 @@ defmodule PlateSlateWeb.Schema do
 
     @desc "Priced below a value"
     field :priced_below, :float
-
   end
 
   object :menu_item do
@@ -51,5 +47,4 @@ defmodule PlateSlateWeb.Schema do
     field :name, :string
     field :description, :string
   end
-
 end

@@ -27,9 +27,9 @@ defmodule PlateSlateWeb.Resolvers.Menu do
       {:error, changeset} ->
         {
           :error,
-          message: "Could not create menu item",
-          details: error_details(changeset),
+          message: "Could not create menu item", details: error_details(changeset)
         }
+
       success ->
         success
     end
@@ -39,5 +39,4 @@ defmodule PlateSlateWeb.Resolvers.Menu do
     changeset
     |> Ecto.Changeset.traverse_errors(fn {msg, _} -> msg end)
   end
-
 end

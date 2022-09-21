@@ -17,11 +17,11 @@ defmodule PlateSlateWeb.Schema.MenuTypes do
   end
 
   object :category do
-
     interfaces [:search_result]
 
     field :name, :string
     field :description, :string
+
     field :items, list_of(:menu_item) do
       arg :filter, :menu_item_filter
       arg :order, type: :sort_order, default_value: :asc
@@ -31,11 +31,14 @@ defmodule PlateSlateWeb.Schema.MenuTypes do
 
   interface :search_result do
     field :name, :string
+
     resolve_type fn
       %PlateSlate.Menu.Item{}, _ ->
         :menu_item
+
       %PlateSlate.Menu.Category{}, _ ->
         :category
+
       _, _ ->
         nil
     end
@@ -43,7 +46,6 @@ defmodule PlateSlateWeb.Schema.MenuTypes do
 
   @desc "Filtering options for the menu item list"
   input_object :menu_item_filter do
-
     @desc "Matching a name"
     field :name, :string
 
@@ -64,11 +66,9 @@ defmodule PlateSlateWeb.Schema.MenuTypes do
 
     @desc "Added to the menu after this date"
     field :added_after, :date
-
   end
 
   object :menu_item do
-
     interfaces [:search_result]
 
     field :id, :id
@@ -77,6 +77,7 @@ defmodule PlateSlateWeb.Schema.MenuTypes do
     field :price, :decimal
     field :added_on, :date
     field :allergy_info, list_of(:allergy_info)
+
     field :category, :category do
       resolve &Resolvers.Menu.category_for_item/3
     end
@@ -93,5 +94,4 @@ defmodule PlateSlateWeb.Schema.MenuTypes do
     field :price, non_null(:decimal)
     field :category_id, non_null(:id)
   end
-
 end

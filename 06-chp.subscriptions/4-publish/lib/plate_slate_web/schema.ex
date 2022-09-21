@@ -17,7 +17,6 @@ defmodule PlateSlateWeb.Schema do
   query do
     # Other query fields
 
-
     field :menu_items, list_of(:menu_item) do
       arg :filter, :menu_item_filter
       arg :order, type: :sort_order, default_value: :asc
@@ -28,12 +27,9 @@ defmodule PlateSlateWeb.Schema do
       arg :matching, non_null(:string)
       resolve &Resolvers.Menu.search/3
     end
-
   end
 
-
   mutation do
-
     field :place_order, :order_result do
       arg :input, non_null(:place_order_input)
       resolve &Resolvers.Ordering.place_order/3
@@ -49,7 +45,6 @@ defmodule PlateSlateWeb.Schema do
 
   subscription do
     field :new_order, :order do
-
       config fn _args, _info ->
         {:ok, topic: "*"}
       end
@@ -70,7 +65,7 @@ defmodule PlateSlateWeb.Schema do
   scalar :date do
     parse fn input ->
       with %Absinthe.Blueprint.Input.String{value: value} <- input,
-      {:ok, date} <- Date.from_iso8601(value) do
+           {:ok, date} <- Date.from_iso8601(value) do
         {:ok, date}
       else
         _ -> :error
@@ -86,9 +81,11 @@ defmodule PlateSlateWeb.Schema do
     parse fn
       %{value: value}, _ ->
         Decimal.parse(value)
+
       _, _ ->
         :error
     end
+
     serialize &to_string/1
   end
 
@@ -96,5 +93,4 @@ defmodule PlateSlateWeb.Schema do
     value :asc
     value :desc
   end
-
 end

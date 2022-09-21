@@ -12,15 +12,12 @@ defmodule PlateSlateWeb.Schema do
   alias PlateSlateWeb.Resolvers
 
   query do
-
     field :menu_items, list_of(:menu_item) do
       arg :filter, :menu_item_filter
       arg :order, type: :sort_order, default_value: :asc
       resolve &Resolvers.Menu.menu_items/3
     end
-
   end
-
 
   scalar :date do
     parse fn input ->
@@ -44,7 +41,6 @@ defmodule PlateSlateWeb.Schema do
 
   @desc "Filtering options for the menu item list"
   input_object :menu_item_filter do
-
     @desc "Matching a name"
     field :name, :string
 
@@ -65,9 +61,7 @@ defmodule PlateSlateWeb.Schema do
 
     @desc "Added to the menu after this date"
     field :added_after, :date
-
   end
-
 
   object :menu_item do
     field :id, :id
@@ -75,5 +69,4 @@ defmodule PlateSlateWeb.Schema do
     field :description, :string
     field :added_on, :date
   end
-
 end

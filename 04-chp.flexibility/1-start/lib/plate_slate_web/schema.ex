@@ -14,20 +14,17 @@ defmodule PlateSlateWeb.Schema do
   import_types __MODULE__.MenuTypes
 
   query do
-
     field :menu_items, list_of(:menu_item) do
       arg :filter, :menu_item_filter
       arg :order, type: :sort_order, default_value: :asc
       resolve &Resolvers.Menu.menu_items/3
     end
-
   end
-
 
   scalar :date do
     parse fn input ->
       with %Absinthe.Blueprint.Input.String{value: value} <- input,
-      {:ok, date} <- Date.from_iso8601(value) do
+           {:ok, date} <- Date.from_iso8601(value) do
         {:ok, date}
       else
         _ -> :error

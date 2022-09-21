@@ -14,12 +14,15 @@ defmodule PlateSlateWeb.Schema do
 
   def middleware(middleware, field, %{identifier: :allergy_info} = object) do
     new_middleware = {Absinthe.Middleware.MapGet, to_string(field.identifier)}
+
     middleware
     |> Absinthe.Schema.replace_default(new_middleware, field, object)
   end
+
   def middleware(middleware, _field, %{identifier: :mutation}) do
     middleware ++ [Middleware.ChangesetErrors]
   end
+
   def middleware(middleware, _field, _object) do
     middleware
   end
@@ -33,6 +36,7 @@ defmodule PlateSlateWeb.Schema do
       middleware Middleware.Authorize, :any
       resolve &Resolvers.Accounts.me/3
     end
+
     # Other query fields
 
     field :menu_items, list_of(:menu_item) do
@@ -45,16 +49,15 @@ defmodule PlateSlateWeb.Schema do
       arg :matching, non_null(:string)
       resolve &Resolvers.Menu.search/3
     end
-
   end
 
   mutation do
-
     field :login, :session do
       arg :email, non_null(:string)
       arg :password, non_null(:string)
       arg :role, non_null(:role)
       resolve &Resolvers.Accounts.login/3
+
       middleware fn res, _ ->
         with %{value: %{user: user}} <- res do
           %{res | context: Map.put(res.context, :current_user, user)}
@@ -66,6 +69,7 @@ defmodule PlateSlateWeb.Schema do
       arg :id, non_null(:id)
       resolve &Resolvers.Ordering.ready_order/3
     end
+
     field :complete_order, :order_result do
       arg :id, non_null(:id)
       resolve &Resolvers.Ordering.complete_order/3
@@ -82,7 +86,6 @@ defmodule PlateSlateWeb.Schema do
       middleware Middleware.Authorize, "employee"
       resolve &Resolvers.Menu.create_item/3
     end
-
   end
 
   subscription do
@@ -93,12 +96,13 @@ defmodule PlateSlateWeb.Schema do
         {:ok, topic: args.id}
       end
 
-      trigger [:ready_order, :complete_order], topic: fn
-        %{order: order} -> [order.id]
-        _ -> []
-      end
+      trigger [:ready_order, :complete_order],
+        topic: fn
+          %{order: order} -> [order.id]
+          _ -> []
+        end
 
-      resolve fn %{order: order}, _ , _ ->
+      resolve fn %{order: order}, _, _ ->
         {:ok, order}
       end
     end
@@ -108,8 +112,10 @@ defmodule PlateSlateWeb.Schema do
         case context[:current_user] do
           %{role: "customer", id: id} ->
             {:ok, topic: id}
+
           %{role: "employee"} ->
             {:ok, topic: "*"}
+
           _ ->
             {:error, "unauthorized"}
         end
@@ -126,7 +132,7 @@ defmodule PlateSlateWeb.Schema do
   scalar :date do
     parse fn input ->
       with %Absinthe.Blueprint.Input.String{value: value} <- input,
-      {:ok, date} <- Date.from_iso8601(value) do
+           {:ok, date} <- Date.from_iso8601(value) do
         {:ok, date}
       else
         _ -> :error
@@ -142,9 +148,11 @@ defmodule PlateSlateWeb.Schema do
     parse fn
       %{value: value}, _ ->
         Decimal.parse(value)
+
       _, _ ->
         :error
     end
+
     serialize &to_string/1
   end
 
@@ -152,6 +160,4 @@ defmodule PlateSlateWeb.Schema do
     value :asc
     value :desc
   end
-
-
 end

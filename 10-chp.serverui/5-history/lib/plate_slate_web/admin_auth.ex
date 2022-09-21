@@ -14,7 +14,7 @@ defmodule PlateSlateWeb.AdminAuth do
 
   def call(conn, _) do
     with id when not is_nil(id) <- get_session(conn, :employee_id),
-    %{} = user <- PlateSlate.Accounts.lookup("employee", id) do
+         %{} = user <- PlateSlate.Accounts.lookup("employee", id) do
       conn
       |> Plug.Conn.assign(:current_user, user)
       |> Absinthe.Plug.put_options(context: %{current_user: user})

@@ -12,12 +12,10 @@ defmodule PlateSlateWeb.Schema do
   alias PlateSlateWeb.Resolvers
 
   query do
-
     field :menu_items, list_of(:menu_item) do
       arg :matching, :string
       resolve &Resolvers.Menu.menu_items/3
     end
-
   end
 
   object :menu_item do
@@ -25,5 +23,4 @@ defmodule PlateSlateWeb.Schema do
     field :name, :string
     field :description, :string
   end
-
 end

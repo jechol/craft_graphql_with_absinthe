@@ -8,6 +8,7 @@
 # ---
 defmodule PlateSlateWeb.ItemController do
   use PlateSlateWeb, :controller
+
   use Absinthe.Phoenix.Controller,
     schema: PlateSlateWeb.Schema
 

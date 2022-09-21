@@ -9,6 +9,7 @@
 defmodule Factory do
   def create_user(role) do
     int = :erlang.unique_integer([:positive, :monotonic])
+
     params = %{
       name: "Person #{int}",
       email: "fake-#{int}@example.com",
@@ -18,6 +19,6 @@ defmodule Factory do
 
     %PlateSlate.Accounts.User{}
     |> PlateSlate.Accounts.User.changeset(params)
-    |> PlateSlate.Repo.insert!
+    |> PlateSlate.Repo.insert!()
   end
 end

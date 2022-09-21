@@ -21,7 +21,7 @@ defmodule PlateSlate.Accounts do
     user = Repo.get_by(User, role: to_string(role), email: email)
 
     with %{password: digest} <- user,
-    true <- Password.valid?(password, digest) do
+         true <- Password.valid?(password, digest) do
       {:ok, user}
     else
       _ -> :error

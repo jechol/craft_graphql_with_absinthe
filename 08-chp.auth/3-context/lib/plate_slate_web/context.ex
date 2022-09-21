@@ -14,14 +14,14 @@ defmodule PlateSlateWeb.Context do
 
   def call(conn, _) do
     context = build_context(conn)
-    IO.inspect [context: context]
+    IO.inspect(context: context)
     Absinthe.Plug.put_options(conn, context: context)
   end
 
   defp build_context(conn) do
     with ["Bearer " <> token] <- get_req_header(conn, "authorization"),
-    {:ok, data} <- PlateSlateWeb.Authentication.verify(token),
-    %{} = user <- get_user(data) do
+         {:ok, data} <- PlateSlateWeb.Authentication.verify(token),
+         %{} = user <- get_user(data) do
       %{current_user: user}
     else
       _ -> %{}

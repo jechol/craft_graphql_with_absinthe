@@ -42,5 +42,4 @@ defmodule PlateSlateWeb.Schema.MenuTypes do
     field :description, :string
     field :added_on, :date
   end
-
 end

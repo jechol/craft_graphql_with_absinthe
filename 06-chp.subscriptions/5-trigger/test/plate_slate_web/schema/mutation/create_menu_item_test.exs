@@ -17,7 +17,7 @@ defmodule PlateSlateWeb.Schema.Mutation.CreateMenuTest do
 
     category_id =
       from(t in Menu.Category, where: t.name == "Sandwiches")
-      |> Repo.one!
+      |> Repo.one!()
       |> Map.fetch!(:id)
       |> to_string
 
@@ -40,51 +40,56 @@ defmodule PlateSlateWeb.Schema.Mutation.CreateMenuTest do
     menu_item = %{
       "name" => "French Dip",
       "description" => "Roast beef, caramelized onions, horseradish, ...",
-      "price" =>  "5.75",
-      "categoryId" => category_id,
+      "price" => "5.75",
+      "categoryId" => category_id
     }
+
     conn = build_conn()
-    conn = post conn, "/api",
-      query: @query,
-      variables: %{"menuItem" => menu_item}
+
+    conn =
+      post conn, "/api",
+        query: @query,
+        variables: %{"menuItem" => menu_item}
 
     assert json_response(conn, 200) == %{
-      "data" => %{
-        "createMenuItem" => %{
-          "errors" => nil,
-          "menuItem" => %{
-            "name" => menu_item["name"],
-            "description" => menu_item["description"],
-            "price" => menu_item["price"]
-          }
-        }
-      }
-    }
+             "data" => %{
+               "createMenuItem" => %{
+                 "errors" => nil,
+                 "menuItem" => %{
+                   "name" => menu_item["name"],
+                   "description" => menu_item["description"],
+                   "price" => menu_item["price"]
+                 }
+               }
+             }
+           }
   end
 
   test "creating a menu item with an existing name fails",
-  %{category_id: category_id} do
+       %{category_id: category_id} do
     menu_item = %{
       "name" => "Reuben",
       "description" => "Roast beef, caramelized onions, horseradish, ...",
-      "price" =>  "5.75",
-      "categoryId" => category_id,
+      "price" => "5.75",
+      "categoryId" => category_id
     }
+
     conn = build_conn()
-    conn = post conn, "/api",
-      query: @query,
-      variables: %{"menuItem" => menu_item}
+
+    conn =
+      post conn, "/api",
+        query: @query,
+        variables: %{"menuItem" => menu_item}
 
     assert json_response(conn, 200) == %{
-      "data" => %{
-        "createMenuItem" => %{
-          "errors" => [
-            %{"key" => "name", "message" => "has already been taken"}
-          ],
-          "menuItem" => nil
-        }
-      }
-    }
+             "data" => %{
+               "createMenuItem" => %{
+                 "errors" => [
+                   %{"key" => "name", "message" => "has already been taken"}
+                 ],
+                 "menuItem" => nil
+               }
+             }
+           }
   end
-
 end

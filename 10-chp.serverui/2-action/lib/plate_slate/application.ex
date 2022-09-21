@@ -15,8 +15,8 @@ defmodule PlateSlate.Application do
     import Supervisor.Spec
 
     children = [
-      supervisor(PlateSlate.Repo, []),
-      supervisor(PlateSlateWeb.Endpoint, []),
+      PlateSlate.Repo,
+      PlateSlateWeb.Endpoint,
       supervisor(Absinthe.Subscription, [PlateSlateWeb.Endpoint]),
     ]
     opts = [strategy: :one_for_one, name: PlateSlate.Supervisor]

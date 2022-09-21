@@ -13,6 +13,8 @@
 # is restricted to this project.
 import Config
 
+config :phoenix, :json_library, Jason
+
 # General application configuration
 config :plate_slate,
   ecto_repos: [PlateSlate.Repo]

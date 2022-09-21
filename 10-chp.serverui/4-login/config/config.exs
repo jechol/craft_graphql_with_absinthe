@@ -13,6 +13,8 @@
 # is restricted to this project.
 import Config
 
+config :phoenix, :json_library, Jason
+
 config :comeonin, Ecto.Password, Comeonin.Pbkdf2
 
 # General application configuration
